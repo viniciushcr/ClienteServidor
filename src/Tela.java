@@ -3,12 +3,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Tela extends JFrame{
 
@@ -61,16 +66,10 @@ public class Tela extends JFrame{
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField.setBounds(12, 553, 570, 37);
+		textField.setBounds(12, 569, 570, 37);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		
-		JTextArea textArea_ClienteRecebeu = new JTextArea();
-		textArea_ClienteRecebeu.setBounds(12, 33, 570, 474);
-		textArea_ClienteRecebeu.setEditable(false);
-		contentPane.add(textArea_ClienteRecebeu);
-		this.tela = textArea_ClienteRecebeu;
 		
 		JButton btnNewButton = new JButton("ENVIAR");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -88,6 +87,18 @@ public class Tela extends JFrame{
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(449, 615, 133, 37);
 		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 13, 570, 550);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea_ClienteRecebeu = new JTextArea();
+		scrollPane.setViewportView(textArea_ClienteRecebeu);
+		textArea_ClienteRecebeu.setEditable(false);
+		textArea_ClienteRecebeu.setFont(new Font("Arial",Font.PLAIN,17));
+		
+		this.tela = textArea_ClienteRecebeu;
+		
 		
 		textField.addActionListener(new ActionListener() {
 			
@@ -107,5 +118,4 @@ public class Tela extends JFrame{
 	public void setTela(String mensagem) {
 		this.tela.append(mensagem);
 	}
-	
 }
