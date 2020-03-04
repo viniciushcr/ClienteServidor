@@ -3,7 +3,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import java.io.*;
 
@@ -18,10 +20,9 @@ public class Cliente extends Thread{
 	private String nomeCliente;
 	private Tela tela;
 	
-	public Cliente(String ipServer, int porta, Tela tela){
-		this.ipServer = ipServer;
-		this.porta = porta;
+	public Cliente(Tela tela){
 		this.tela = tela;
+		perguntarDados();
 	}
 	
 	public static void main(String[] args){
@@ -37,10 +38,22 @@ public class Cliente extends Thread{
 			
 }
 	
-	public void perguntarNomeCliente(){
+	public void perguntarDados(){
 		
+		JLabel ip = new JLabel("IpServer:");
+		JTextField campoIp = new JTextField("localhost");
+		JLabel porta = new JLabel("Porta:");
+		JTextField campoPorta = new JTextField("1000");
+		JLabel nome = new JLabel("Nome Cliente:");
+		JTextField campoNome = new JTextField();
 		
-		this.nomeCliente = JOptionPane.showInputDialog("Digite seu nome:");
+		Object[] texts = {ip,campoIp, porta, campoPorta, nome, campoNome};
+		JOptionPane.showMessageDialog(null, texts);
+		
+		this.ipServer = campoIp.getText();
+		this.porta = Integer.parseInt(campoPorta.getText());
+		this.nomeCliente = campoNome.getText();
+		
 		if(this.nomeCliente.equals("") ||this.nomeCliente.equals(" ") || this.nomeCliente.equals(null)) {
 			this.nomeCliente = "NOME OCULTO";
 		}
@@ -51,7 +64,6 @@ public class Cliente extends Thread{
 	public void run(){
 		
 		try {
-			perguntarNomeCliente();
 			tela.setTitle(this.getNomeCliente());
 			
 		}catch (Exception e) {

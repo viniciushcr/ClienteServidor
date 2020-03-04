@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -32,11 +33,7 @@ public class Tela extends JFrame{
 				try {
 					Tela frame = new Tela();
 					
-					String server = "localhost";
-					int porta = 1000;
-					int numeroDeClientes = 1;
-					
-					cliente = new Cliente(server, porta, frame);
+					cliente = new Cliente(frame);
 					cliente.start();
 					
 					frame.setVisible(true);

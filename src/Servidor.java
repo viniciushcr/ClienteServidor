@@ -1,5 +1,7 @@
 import java.net.*;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 public class Servidor implements Runnable{
 	
 	private static Servidor servidor;
@@ -32,7 +34,8 @@ public class Servidor implements Runnable{
 		
 		if(servidor == null) {
 			try {
-				servidor = new Servidor(1000);
+				int porta = Integer.parseInt(JOptionPane.showInputDialog("Digite a Porta:"));
+				servidor = new Servidor(porta);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -48,9 +51,7 @@ public class Servidor implements Runnable{
 	
 	public static void main(String[] args){
 		try{
-			Servidor servidor;
-			servidor = Servidor.getServidor();
-			//new Servidor(1000);
+			Servidor.getServidor();
 		}catch(Exception e){
 			e.printStackTrace();
 			System.exit(1);
